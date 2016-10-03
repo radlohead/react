@@ -10,7 +10,7 @@ module.exports = {
         './src/index'
     ],
     output: {
-        path: './',  //결과파일
+        path: './dist',  //결과파일
         filename: 'bundle.js'
     },
     plugins: [
