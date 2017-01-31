@@ -1,5 +1,7 @@
-require('./index.html');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-const a = 1;
-const b = 3;
-console.log(`${a} + ${b} = ${a + b}`);
+ReactDOM.render(
+    <App />, document.getElementById('root')
+);
