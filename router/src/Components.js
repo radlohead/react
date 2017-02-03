@@ -1,8 +1,8 @@
 import React from 'react';
 
 const allList = [
-    { id: 0, text: 'portfolio #0' },
-    { id: 1, text: 'portfolio #1' }
+    {id: 0, text: 'portfolio #0'},
+    {id: 1, text: 'portfolio #1'}
 ];
 
 export const Home = () => (
@@ -17,7 +17,11 @@ export const About = ({ children }) => (
 );
 
 export const Name = () => (
-    <h3>gomugom</h3>
+    <h3>Name</h3>
+);
+
+export const Work = () => (
+    <h3>Work</h3>
 );
 
 export const Portfolio = ({
@@ -25,12 +29,13 @@ export const Portfolio = ({
 }) => {
     const filteredList = id ? allList.filter(v=> v.id == id) : allList;
     const renderList = filteredList.map(v=> (
-        <li key={v.id} > {v.text}</li>
+        <li key={v.id}>{v.text}</li>
     ));
     return (
         <div>
             <h2>Portfolio</h2>
-            <ul>{renderList}</ul>
+            <div>{renderList}</div>
         </div>
-    );
-}
+    )
+};
+

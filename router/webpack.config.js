@@ -1,49 +1,23 @@
-var path = require('path');
-var webpack = require('webpack');
-
-var HOST  = 'http://localhost';
-var PORT  = 8080;
-var URL   = HOST + ':' + PORT + '/';
-var _PATH = path.resolve(__dirname, 'src');
-
 module.exports = {
-    HOST: HOST,
-    PORT: PORT,
-    URL: URL,
-    watch: true,
-    progress: true,
-    devtool: 'cheap-module-eval-source-map',
-    context: _PATH,
-    entry: {
-        index: [
-            'webpack-hot-middleware/client?path=' + URL + '__webpack_hmr',
-            'webpack/hot/only-dev-server',
-            path.resolve(_PATH, 'main')
-        ]
-    },
+    entry: './src/index.js',
     output: {
-        path: _PATH,
-        filename: 'bundle.js',
-        publicPath: URL
+        path: __dirname + '/output', //번들 파일 폴더
+        filename: 'bundle.js' //번들 파일 이름
     },
-    module: {
+    devServer: {
+        inline: true, //자동 리로드 여부를 선택합니다.
+        port: 8080, //로컬 서버주소를 설정합니다.
+        contentBase: __dirname + '/output',
+        historyApiFallback: true
+    },
+    module:
+    {
         loaders: [
             {
-                test: /\.js$/,
-                include: [ _PATH ],
-                exclude: [ /node_modules/ ],
-                loader: 'react-hot!babel?cacheDirectory'
+                test: /\.js$/, //로더를 사용할 확장자를 추가합니다.
+                loader: 'babel', //로더를 설정합니다.
+                exclude: /node_modules/,  //로더 사용 제외한 대상을 추가합니다.
             }
         ]
-    },
-    resolve: {
-        root: [ _PATH ],
-        extensions: [ '', '.js' ]
-    },
-    node: { fs: "empty" },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
-        new webpack.EvalSourceMapDevToolPlugin()
-    ]
+    }
 };
